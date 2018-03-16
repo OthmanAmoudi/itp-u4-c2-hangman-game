@@ -1,5 +1,5 @@
-from exceptions import *
-from random import randint
+import random
+from .exceptions import *
 
 # Complete with your own, just for fun :)
 LIST_OF_WORDS = ['king','queen','melody','bitch','beer','wine','weed']
