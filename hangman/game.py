@@ -8,17 +8,14 @@ LIST_OF_WORDS = []
 def _get_random_word(list_of_words):
     if not list_of_words:
         raise InvalidListOfWordsException()
-    number_of_word = randint(0,len(list_of_words))
-    return number_of_word
+    return random.choice(list_of_words)
 
 
 def _mask_word(word):
     if not word:
         raise InvalidWordException()
-    mask = ''
-    for letter in word:
-        mask+='*'
-    return mask
+    return '*' * len(word)
+
 
 def _uncover_word(answer_word, masked_word, character):
     if not answer_word or not masked_word:
@@ -43,26 +40,6 @@ def _uncover_word(answer_word, masked_word, character):
             new_word += masked_char
 
     return new_word
-# def _uncover_word(answer_word, masked_word, character):
-#     if not answer_word or not masked_word:
-#         raise InvalidWordException()
-
-#     if len(character) > 1:
-#         raise InvalidGuessedLetterException()
-
-#     if len(answer_word) != len(masked_word):
-#         raise InvalidWordException()
-
-#     counter = 0
-#     masked_word_list = list(masked_word)
-    
-#     for letr_in_answr in answer_word:
-#         if letr_in_answr == character:
-#             masked_word_list[counter] = character
-#         counter+=1
-        
-#     result = ''.join(masked_word_list)
-#     return result
 
 
 def _is_game_won(game):
@@ -120,4 +97,3 @@ def start_new_game(list_of_words=None, number_of_guesses=5):
     }
 
     return game
-
