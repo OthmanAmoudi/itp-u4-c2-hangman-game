@@ -33,16 +33,14 @@ def _uncover_word(answer_word, masked_word, character):
 
     counter = 0
     masked_word_list = list(masked_word)
-    letter_was_found = False
     
     for letr_in_answr in answer_word:
         if letr_in_answr == character:
             masked_word_list[counter] = character
-            letter_was_found = True
         counter+=1
         
     result = ''.join(masked_word_list)
-    return (result,letter_was_found)
+    return result
 
 
 def _is_game_won(game):
