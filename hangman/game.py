@@ -20,7 +20,6 @@ def _mask_word(word):
         mask+='*'
     return mask
 
-
 def _uncover_word(answer_word, masked_word, character):
     if not answer_word or not masked_word:
         raise InvalidWordException()
@@ -31,16 +30,39 @@ def _uncover_word(answer_word, masked_word, character):
     if len(answer_word) != len(masked_word):
         raise InvalidWordException()
 
-    counter = 0
-    masked_word_list = list(masked_word)
+    answer = answer_word.lower()
+    if character.lower() not in answer:
+        return masked_word
+
+    new_word = ''
+
+    for answer_char, masked_char in zip(answer, masked_word):
+        if character.lower() == answer_char:
+            new_word += answer_char
+        else:
+            new_word += masked_char
+
+    return new_word
+# def _uncover_word(answer_word, masked_word, character):
+#     if not answer_word or not masked_word:
+#         raise InvalidWordException()
+
+#     if len(character) > 1:
+#         raise InvalidGuessedLetterException()
+
+#     if len(answer_word) != len(masked_word):
+#         raise InvalidWordException()
+
+#     counter = 0
+#     masked_word_list = list(masked_word)
     
-    for letr_in_answr in answer_word:
-        if letr_in_answr == character:
-            masked_word_list[counter] = character
-        counter+=1
+#     for letr_in_answr in answer_word:
+#         if letr_in_answr == character:
+#             masked_word_list[counter] = character
+#         counter+=1
         
-    result = ''.join(masked_word_list)
-    return result
+#     result = ''.join(masked_word_list)
+#     return result
 
 
 def _is_game_won(game):
